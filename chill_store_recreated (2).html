@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chill Store — UJI COBA</title>
+  <style>
+    :root{--accent:#0ea5a4;--bg-dark:#0b1220;--card:#ffffffee}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#071017; color:#0b0b0b}
+
+    /* Minecraft-like pixel pattern background (subtle) */
+    .bg-mc{
+      background-image: linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+                        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 24px 24px, 24px 24px;
+      background-color: #6fa86f; /* grass tone */
+      background-position: 0 0, 12px 12px;
+      filter: contrast(1.02) saturate(0.95);
+    }
+
+    /* Page layout */
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:linear-gradient(180deg,#0b1220, rgba(11,18,32,0.9));color:#fff}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:8px;background:linear-gradient(180deg,#256e42,#2f9b59);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    nav a{color:#d7f6f3;margin-left:18px;text-decoration:none;font-weight:600}
+
+    .hero{min-height:360px;display:grid;grid-template-columns:1fr 420px;gap:28px;padding:40px;align-items:center}
+    .hero-left{color:#062018}
+    .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 6px 20px rgba(2,6,23,0.45)}
+
+    h1{margin:6px 0 6px 0;font-size:34px}
+    p.lead{margin:0 0 12px 0;color:#1f2937}
+
+    .topup-btn{display:inline-block;padding:12px 18px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#06b6d4);color:white;font-weight:700;border:none;cursor:pointer}
+
+    /* products grid */
+    .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;padding:18px}
+    .product{background:white;border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(2,6,23,0.06);text-align:center}
+    .product img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+    .product h4{margin:8px 0 2px 0}
+    .product small{color:#475569}
+
+    footer{padding:18px;text-align:center;color:#94a3b8}
+
+    /* Animated Ender Dragon (subtle SVG that flies slowly) */
+    .dragon-wrap{position:fixed;left:-220px;top:36px;pointer-events:none;z-index:60;}
+    .dragon{width:220px;height:80px;transform:translateY(0);opacity:0.95}
+    @keyframes fly-across{0%{transform:translateX(-30vw) translateY(0) scaleX(-1) } 50%{transform:translateX(40vw) translateY(-12px) scaleX(-1)} 100%{transform:translateX(110vw) translateY(0) scaleX(-1)}}
+    .dragon-wrap.play{animation:fly-across 18s linear infinite}
+
+    /* responsive */
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}.dragon{display:none}}
+
+    /* small polish */
+    .badge{display:inline-block;background:#f1f5f9;padding:6px 10px;border-radius:999px;font-weight:700}
+  </style>
+</head>
+<body class="bg-mc">
+  <header>
+    <div class="brand">
+      <div class="logo">CS</div>
+      <div>
+        <div style="font-weight:800">Chill Store</div>
+        <div style="font-size:12px;color:#cfece9">Teman belanja santai — UJI COBA</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Produk</a>
+      <a href="#contact">Kontak</a>
+      <button class="topup-btn" id="topupBtn">TOP UP: UJI COBA</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-left card">
+        <h1>Selamat datang di Chill Store</h1>
+        <p class="lead">Versi <strong>UJI COBA</strong> — top up dialihkan ke layanan percobaan. Background bergaya Minecraft, tampilan rapi, dan sedikit animasi Ender Dragon — tidak berlebihan.</p>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="topup-btn" onclick="ujiCoba()">Isi Saldo — UJI COBA</button>
+          <span class="badge">Beta</span>
+        </div>
+        <hr style="margin:16px 0;border:none;border-top:1px solid rgba(15,23,42,0.05)" />
+        <p style="font-size:14px;color:#334155">Note: ini versi demo. Tidak ada transaksi nyata. Jika mau, aku bisa ganti tema jadi One Piece atau rapikan sesuai file HTML yang kamu punya — upload file HTML-nya.</p>
+      </div>
+
+      <aside class="card" style="height:100%">
+        <h3 style="margin-top:0">Quick Links</h3>
+        <ul style="padding-left:18px;color:#334155">
+          <li>Profile Toko: Chill Store</li>
+          <li>Owner: Putih</li>
+          <li>WDO</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section id="products" class="card" style="margin:18px;">
+      <h3 style="margin-top:0">Produk Pilihan</h3>
+      <div class="products">
+        <div class="product">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='240'><rect width='100%' height='100%' fill='%23d1fae5'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%2310240a' font-family='Arial' font-size='20'>Pulsa 50k</text></svg>" alt="Pulsa" />
+          <h4>Pulsa 50k</h4>
+          <small>Provider: Semua</small>
+        </div>
+        <div class="product">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='240'><rect width='100%' height='100%' fill='%23fde68a'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23123412' font-family='Arial' font-size='20'>Voucher Game</text></svg>" alt="Voucher" />
+          <h4>Voucher Game</h4>
+          <small>Untuk berbagai platform</small>
+        </div>
+        <div class="product">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='240'><rect width='100%' height='100%' fill='%23c7d2fe'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23102a43' font-family='Arial' font-size='20'>Topup ML</text></svg>" alt="Topup" />
+          <h4>Topup ML</h4>
+          <small>Paket hemat</small>
+        </div>
+        <div class="product">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='240'><rect width='100%' height='100%' fill='%23fee2e2'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23102312' font-family='Arial' font-size='20'>Diamond</text></svg>" alt="Diamond" />
+          <h4>Diamond</h4>
+          <small>Segera hadir</small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Chill Store • Demo UJI COBA — tidak menerima pembayaran nyata.
+  </footer>
+
+  <!-- Animated Ender Dragon SVG -->
+  <div class="dragon-wrap" id="dragon">
+    <svg class="dragon" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1">
+          <stop offset="0" stop-color="#8b5cf6" />
+          <stop offset="1" stop-color="#06b6d4" />
+        </linearGradient>
+      </defs>
+      <g fill="url(#g)" opacity="0.95">
+        <path d="M6 60 C20 40, 60 28, 90 30 C96 28,112 20,130 22 C150 24,168 34,190 36 C210 38,230 30,250 28 C260 27,284 20,294 14 L300 10 L290 18 C280 26,260 34,240 36 C220 38,200 44,180 46 C160 50,120 56,80 60 C50 62,20 70,6 60 Z"/>
+        <circle cx="38" cy="40" r="3" fill="#fff"/>
+      </g>
+    </svg>
+  </div>
+
+  <script>
+    // make dragon fly gently — start after load
+    window.addEventListener('load',()=>{
+      const d = document.getElementById('dragon');
+      setTimeout(()=>d.classList.add('play'),600);
+    });
+
+    function ujiCoba(){
+      alert('Mode UJI COBA: Top up diblokir pada versi demo.');
+    }
+
+    // topup button behavior (demo)
+    document.getElementById('topupBtn').addEventListener('click', ujiCoba);
+  </script>
+</body>
+</html>
